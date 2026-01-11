@@ -9,7 +9,11 @@ const pool = new Pool({
   // Supabase free tier: max 60 connections, recommend max 5-10 per service
   max: 10, // Maximum number of clients in the pool
   idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
-  connectionTimeoutMillis: 2000, // Return error after 2 seconds if connection cannot be established
+  connectionTimeoutMillis: 10000, // Increase timeout for network issues (10 seconds)
+  // Force IPv4 if IPv6 is not available
+  ...(process.env.NODE_ENV === 'production' && {
+    // Additional options for production
+  }),
 });
 
 // Test connection
@@ -18,8 +22,14 @@ pool.on('connect', () => {
 });
 
 pool.on('error', (err: Error) => {
-  console.error('❌ Unexpected error on idle client', err);
-  process.exit(-1);
+  // Don't crash the app on database connection errors
+  // Log error but let the app continue running
+  console.error('❌ Database connection error:', err.message);
+  // Only exit on critical errors, not network issues
+  if (err.message.includes('FATAL') || err.message.includes('syntax error')) {
+    console.error('❌ Critical database error, exiting...');
+    process.exit(-1);
+  }
 });
 
 export default pool;

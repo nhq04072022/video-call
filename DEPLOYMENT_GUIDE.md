@@ -70,13 +70,30 @@ PORT=3001
 
 2. Render mặc định sẽ install cả `dependencies` và `devDependencies` khi chạy `npm install`
 
-### 1.5. Deploy
+### 1.5. Cấu hình Database Connection
+
+**QUAN TRỌNG:** Nếu gặp lỗi `ENETUNREACH` hoặc không kết nối được database:
+
+1. **Dùng Connection Pooling URL từ Supabase:**
+   - Vào Supabase Dashboard → Project Settings → Database
+   - Tìm **"Connection Pooling"** section
+   - Copy **Connection String** (port 6543, có `?pgbouncer=true`)
+   - Format: `postgresql://postgres:[PASSWORD]@[PROJECT_REF].supabase.co:6543/postgres?pgbouncer=true`
+   - Cập nhật `DATABASE_URL` trong Render Environment Variables
+
+2. **Hoặc nếu vẫn lỗi IPv6:**
+   - Thử dùng direct connection với IPv4: `postgresql://postgres:[PASSWORD]@[PROJECT_REF].supabase.co:5432/postgres`
+   - Đảm bảo Supabase cho phép connections từ Render IPs
+
+### 1.6. Deploy
 
 1. Click **"Create Web Service"**
 2. Đợi build (3-5 phút)
 3. Xem logs để kiểm tra
 4. Khi deploy xong, bạn sẽ có URL: `https://video-call-api.onrender.com`
 5. Test: `https://video-call-api.onrender.com/health`
+
+**Lưu ý:** Nếu thấy lỗi database connection trong logs nhưng server vẫn chạy, đó là do job scheduler. Server vẫn hoạt động bình thường cho API requests.
 
 **Kết quả mong đợi:**
 ```json

@@ -34,8 +34,14 @@ export function startJobScheduler(): void {
           batch.map((job) => processNotificationJob(job))
         );
       }
-    } catch (error) {
-      console.error('[jobScheduler] Error processing jobs:', error);
+    } catch (error: any) {
+      // Don't crash the app if database connection fails
+      // Log error but continue running
+      if (error?.code === 'ENETUNREACH' || error?.code === 'ECONNREFUSED') {
+        console.warn('[jobScheduler] Database connection issue (will retry next minute):', error.message);
+      } else {
+        console.error('[jobScheduler] Error processing jobs:', error);
+      }
     }
   });
 
