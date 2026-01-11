@@ -30,8 +30,9 @@
    - **Branch:** `main`
    - **Root Directory:** `services/api-service` ⚠️ **QUAN TRỌNG!**
    - **Runtime:** `Node`
-   - **Build Command:** `npm ci && npm run build`
-     - ⚠️ **QUAN TRỌNG:** Dùng `npm ci` thay vì `npm install` để đảm bảo install cả `devDependencies` (cần cho TypeScript build)
+   - **Build Command:** `NODE_ENV=development npm ci && npm run build`
+     - ⚠️ **QUAN TRỌNG:** Set `NODE_ENV=development` để đảm bảo install cả `devDependencies` (bao gồm `@types/node` cần cho TypeScript build)
+     - Nếu vẫn lỗi, thử: `npm install --include=dev && npm run build`
    - **Start Command:** `npm start`
    - **Plan:** `Free`
 
