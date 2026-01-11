@@ -45,6 +45,23 @@ app.use('/api/v1/mentors', mentorRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
 app.use('/api/v1/expertise', expertiseRoutes);
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Video Call API Service',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      sessions: '/api/sessions',
+      users: '/api/users',
+      mentors: '/api/mentors',
+      notifications: '/api/notifications',
+    },
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'API service is running' });
