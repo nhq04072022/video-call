@@ -34,6 +34,7 @@ export const SessionActivePage: React.FC = () => {
   const [sessionTime, setSessionTime] = useState(0);
   const [showSuccessNotification, setShowSuccessNotification] = useState(true);
   const [showEndSessionModal, setShowEndSessionModal] = useState(false);
+  const [isAIPanelOpen, setIsAIPanelOpen] = useState(false);
   const [participantRole, setParticipantRole] = useState<'mentor' | 'patient'>('mentor');
 
   // LiveKit hook

@@ -33,7 +33,7 @@ export const SessionApplyPage: React.FC = () => {
       navigate('/login?redirectTo=' + encodeURIComponent(`/profile/${mentorId}/apply`));
       return;
     }
-    if (user.role !== 'mentee' && user.role !== 'patient') {
+    if (user.role !== 'mentee' && user.role !== 'MENTEE') {
       navigate('/sessions');
       return;
     }
@@ -150,7 +150,7 @@ export const SessionApplyPage: React.FC = () => {
     }
   };
 
-  if (!user || (user.role !== 'mentee' && user.role !== 'patient')) {
+  if (!user || (user.role !== 'mentee' && user.role !== 'MENTEE')) {
     return null; // Will redirect in useEffect
   }
 

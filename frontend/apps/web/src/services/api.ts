@@ -170,7 +170,7 @@ export const sessionApi = {
    * Create a session from a confirmed booking
    * Note: Backend doesn't support this yet
    */
-  createSessionFromBooking: async (bookingId: string): Promise<SessionCreationResponse> => {
+  createSessionFromBooking: async (_bookingId: string): Promise<SessionCreationResponse> => {
     throw new Error('Session creation from booking not yet implemented in backend');
   },
 
@@ -206,7 +206,7 @@ export const sessionApi = {
     }
   },
 
-  getJoinToken: async (sessionId?: string, deviceInfo?: string): Promise<JoinSessionResponse> => {
+  getJoinToken: async (sessionId?: string, _deviceInfo?: string): Promise<JoinSessionResponse> => {
     try {
       // Pass sessionId as query parameter if provided
       const url = sessionId 
@@ -266,7 +266,7 @@ export const sessionApi = {
    * Start a session
    * Maps to: POST /api/sessions/start
    */
-  startSession: async (sessionId?: string, sessionGoals?: string[]): Promise<SessionStartResponse> => {
+  startSession: async (sessionId?: string, _sessionGoals?: string[]): Promise<SessionStartResponse> => {
     if (!sessionId) {
       throw new Error('Session ID is required');
     }
@@ -275,9 +275,7 @@ export const sessionApi = {
     });
     return {
       session_started: response.data.success,
-      session_id: response.data.session_id || sessionId,
       start_timestamp: response.data.start_time || new Date().toISOString(),
-      room_name: response.data.roomName,
     };
   },
 
@@ -287,9 +285,9 @@ export const sessionApi = {
    */
   endSession: async (
     sessionId?: string,
-    endedBy?: string,
-    endReason?: string,
-    sessionSummary?: Record<string, any>
+    _endedBy?: string,
+    _endReason?: string,
+    _sessionSummary?: Record<string, any>
   ): Promise<SessionEndResponse> => {
     if (!sessionId) {
       throw new Error('Session ID is required');
@@ -299,7 +297,6 @@ export const sessionApi = {
     });
     return {
       session_ended: response.data.success,
-      session_id: response.data.session_id || sessionId,
       end_timestamp: response.data.end_time || new Date().toISOString(),
       session_duration: response.data.duration_minutes || 0,
     };
@@ -367,17 +364,13 @@ export const sessionApi = {
    * Maps to: GET /api/sessions/status
    */
   getSessionStatus: async (
-    sessionId?: string,
-    detailLevel: 'basic' | 'detailed' | 'technical' | 'admin' = 'basic'
+    _sessionId?: string,
+    _detailLevel: 'basic' | 'detailed' | 'technical' | 'admin' = 'basic'
   ): Promise<SessionStatusResponse> => {
     const response = await apiClient.get<BackendStatusResponse>('/api/sessions/status');
     return {
-      session_id: sessionId || 'default-session',
       status: response.data.status,
-      room_name: response.data.roomName,
-      is_active: response.data.isActive,
-      current_participants: [],
-      session_metadata: {},
+      participants: [],
     };
   },
 
@@ -478,8 +471,8 @@ export const recordingApi = {
    * Note: Not yet implemented in backend
    */
   configureRecording: async (
-    sessionId: string,
-    config: RecordingConfiguration
+    _sessionId: string,
+    _config: RecordingConfiguration
   ): Promise<RecordingConfigurationResponse> => {
     throw new Error('Recording configuration not yet implemented in backend');
   },
@@ -489,9 +482,9 @@ export const recordingApi = {
    * Note: Not yet implemented in backend
    */
   getRecordingAccess: async (
-    recordingId: string,
-    requestingUserId: string,
-    accessPurpose: 'review' | 'download' | 'streaming' | 'transcription'
+    _recordingId: string,
+    _requestingUserId: string,
+    _accessPurpose: 'review' | 'download' | 'streaming' | 'transcription'
   ): Promise<RecordingAccessResponse> => {
     throw new Error('Recording access not yet implemented in backend');
   },
@@ -501,8 +494,8 @@ export const recordingApi = {
    * Note: Not yet implemented in backend
    */
   configureTranscription: async (
-    sessionId: string,
-    config: RealtimeTranscriptionConfig
+    _sessionId: string,
+    _config: RealtimeTranscriptionConfig
   ): Promise<{ status: string; message: string }> => {
     throw new Error('Transcription configuration not yet implemented in backend');
   },

@@ -71,7 +71,7 @@ export const useSessionStatus = (
     // Set up polling interval
     intervalRef.current = window.setInterval(() => {
       fetchStatus();
-    }, interval);
+    }, interval) as unknown as NodeJS.Timeout;
 
     // Cleanup
     return () => {

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import type {
-  Notification,
   NotificationsResponse,
   NotificationPreferences,
 } from '../types/calendar';

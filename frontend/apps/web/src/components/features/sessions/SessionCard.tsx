@@ -8,6 +8,7 @@ interface SessionCardProps {
   patientId?: string;
   plannedDuration?: number;
   onViewDetails?: () => void;
+  onJoin?: () => void;
   onStart?: () => void;
   onEnd?: () => void;
 }
@@ -19,6 +20,7 @@ export const SessionCard: React.FC<SessionCardProps> = ({
   patientId,
   plannedDuration,
   onViewDetails,
+  onJoin,
   onStart,
   onEnd,
 }) => {

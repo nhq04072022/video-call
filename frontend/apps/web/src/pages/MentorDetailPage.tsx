@@ -167,7 +167,7 @@ export const MentorDetailPage: React.FC = () => {
             )}
 
             <div className="flex gap-4 mt-6">
-              {user && (user.role === 'mentee' || user.role === 'patient') && user.id !== mentor.id && (
+              {user && (user.role === 'mentee' || user.role === 'MENTEE') && user.id !== mentor.id && (
                 <>
                   <Button
                     onClick={async () => {
@@ -176,6 +176,7 @@ export const MentorDetailPage: React.FC = () => {
                       try {
                         // Tạo session ngay lập tức, không cần chờ duyệt
                         const session = await sessionApi.createSession({
+                          booking_id: 'quick-booking',
                           session_config: {
                             mentor_id: mentorId,
                             mentee_goal: 'Quick session booking',
@@ -206,7 +207,7 @@ export const MentorDetailPage: React.FC = () => {
                   </Link>
                 </>
               )}
-              {(!user || (user.role !== 'mentee' && user.role !== 'patient') || user.id === mentor.id) && (
+              {(!user || (user.role !== 'mentee' && user.role !== 'MENTEE') || user.id === mentor.id) && (
                 <Link to={`/mentors/${mentor.id}/book`}>
                   <Button variant="primary" className="flex-1" aria-label="Book a session with this mentor">
                     Book a Session

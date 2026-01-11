@@ -14,6 +14,7 @@ export interface CalendarEvent {
     mentee_questions?: string;
     duration_minutes?: number;
     livekit_room_name?: string;
+    session_id?: string;
   };
 }
 

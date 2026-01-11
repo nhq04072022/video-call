@@ -27,7 +27,10 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         id: 'mentor-1',
         email: 'mentor@example.com',
         name: 'Dr. Smith',
+        full_name: 'Dr. Smith',
         role: 'mentor' as const,
+        is_active: true,
+        is_email_verified: true,
       };
       setToken('mock-token-for-testing');
       setUser(mockUser);

@@ -99,10 +99,10 @@ export const SkillsSelector: React.FC<SkillsSelectorProps> = ({
                   }`}
                   style={
                     isSelected
-                      ? {
+                      ? ({
                           background: 'linear-gradient(90deg, #A11692 0%, #A31694 100%)',
                           '--tw-ring-color': '#A11692',
-                        }
+                        } as React.CSSProperties)
                       : ({ '--tw-ring-color': '#A11692' } as React.CSSProperties)
                   }
                   aria-pressed={isSelected}

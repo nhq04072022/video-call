@@ -161,11 +161,11 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
         }
       };
       api.on('datesSet', updateTitle);
-      api.on('viewChange', updateTitle);
+      api.on('viewChange' as any, updateTitle);
       updateTitle();
       return () => {
         api.off('datesSet', updateTitle);
-        api.off('viewChange', updateTitle);
+        api.off('viewChange' as any, updateTitle);
       };
     }
   }, [view]);

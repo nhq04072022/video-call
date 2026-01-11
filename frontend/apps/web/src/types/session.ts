@@ -135,13 +135,14 @@ export interface EmergencyTerminationResponse {
 
 export interface SessionListItem {
   session_id: string;
-  status: 'created' | 'started' | 'ended';
+  status: 'created' | 'started' | 'ended' | 'pending' | 'PENDING' | 'accepted' | 'ACCEPTED' | 'active' | 'ACTIVE' | 'ENDED' | 'CANCELED' | 'DECLINED';
   mentor_id?: string;
   patient_id?: string;
   planned_duration?: number;
   created_at?: string;
   scheduled_start_time?: string;
   session_type?: string;
+  mentee_goal?: string;
 }
 
 export interface SessionListResponse {

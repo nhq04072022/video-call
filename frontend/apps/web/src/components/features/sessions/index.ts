@@ -10,4 +10,4 @@ export { ParticipantTile } from './ParticipantTile';
 export { NetworkQualityBadge } from './NetworkQualityBadge';
 export { AIPanelSidebar } from './AIPanelSidebar';
 export { EndSessionModal } from './EndSessionModal';
-export { AccessibilityHelpers, useKeyboardShortcuts } from './AccessibilityHelpers';
+export { useFocusTrap, useKeyboardShortcuts } from './AccessibilityHelpers';

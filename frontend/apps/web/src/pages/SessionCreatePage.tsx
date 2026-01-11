@@ -37,13 +37,13 @@ export const SessionCreatePage: React.FC = () => {
       let menteeId: string = user.id;
 
       // Determine roles: if user is mentee, find an available mentor
-      if (user.role === 'mentee' || user.role === 'patient') {
+      if (user.role === 'mentee' || user.role === 'MENTEE') {
         menteeId = user.id;
         // Find first available mentor
         try {
           const mentors = await mentorApi.searchMentors({ limit: 1 });
-          if (mentors.mentors && mentors.mentors.length > 0 && mentors.mentors[0].mentor_id) {
-            mentorId = mentors.mentors[0].mentor_id;
+          if (mentors.mentors && mentors.mentors.length > 0 && mentors.mentors[0].id) {
+            mentorId = mentors.mentors[0].id;
           } else {
             // If no mentor found, use current user as both (self-session)
             mentorId = user.id;

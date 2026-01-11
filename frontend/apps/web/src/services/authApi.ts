@@ -3,7 +3,7 @@
  * Integrated with backend API at /api/auth
  */
 import axios from 'axios';
-import type { AuthResponse, RegisterRequest, LoginRequest } from '../types/user';
+import type { AuthResponse, RegisterRequest } from '../types/user';
 
 // API base URL (matches backend service)
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';

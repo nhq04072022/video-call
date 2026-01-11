@@ -15,7 +15,7 @@ import type {
   SessionListItem,
   SessionListResponse,
 } from '../types/session';
-import type { AuthResponse } from '../types/user';
+import type { AuthResponse, User } from '../types/user';
 
 const API_BASE_URL = '/api/v1';
 
@@ -25,7 +25,7 @@ const generateSessionId = () => `session-${Date.now()}-${Math.random().toString(
 const generateJoinToken = () => `join-token-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
 // Mock users storage (in-memory for demo)
-let mockUsers = [
+let mockUsers: Array<{ email: string; password: string; user: User }> = [
   {
     email: 'mentor@example.com',
     password: 'password123',
@@ -33,7 +33,10 @@ let mockUsers = [
       id: 'mentor-1',
       email: 'mentor@example.com',
       name: 'Dr. Smith',
-      role: 'mentor' as const,
+      full_name: 'Dr. Smith',
+      role: 'mentor',
+      is_active: true,
+      is_email_verified: true,
     },
   },
   {
@@ -43,7 +46,10 @@ let mockUsers = [
       id: 'patient-1',
       email: 'patient@example.com',
       name: 'John Doe',
-      role: 'patient' as const,
+      full_name: 'John Doe',
+      role: 'mentee',
+      is_active: true,
+      is_email_verified: true,
     },
   },
 ];
@@ -114,12 +120,12 @@ export const handlers = [
     }
 
     // Create new user
-    const newUser = {
+    const newUser: User = {
       id: `${body.role}-${Date.now()}`,
       email: body.email,
       full_name: body.full_name,
       name: body.full_name, // For backward compatibility
-      role: body.role,
+      role: body.role as 'mentor' | 'mentee',
       is_active: true,
       is_email_verified: false,
     };
@@ -160,7 +166,7 @@ export const handlers = [
     const response: AuthResponse = {
       access_token: `mock-token-${user.user.id}-${Date.now()}`,
       token_type: 'bearer',
-      user: user.user,
+      user: user.user as User,
     };
 
     return HttpResponse.json(response);

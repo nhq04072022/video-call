@@ -12,7 +12,7 @@ const getActualTrack = (trackOrPub: Track | TrackPublication | null | undefined)
   if (!trackOrPub) return null;
   if ('track' in trackOrPub && trackOrPub.track) return trackOrPub.track;
   if (trackOrPub instanceof Track) return trackOrPub;
-  return trackOrPub as Track;
+  return trackOrPub as unknown as Track;
 };
 
 interface VideoGridProps {
