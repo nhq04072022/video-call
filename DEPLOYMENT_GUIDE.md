@@ -53,6 +53,8 @@ LIVEKIT_API_SECRET=4wSxe4xLvNiDC7qfLjL5QEUJhWe335fA5aaBRN8T2HuB
 JWT_SECRET=scTNSXfmfrs7LnGpf8A7ng5w368jC4AKTBE22iEisfTeVbMkJbIeK9yDpy3Zk3Je
 
 # Frontend URL (sẽ cập nhật sau khi deploy frontend)
+# Format: https://your-frontend.vercel.app (hoặc nhiều URLs cách nhau bởi dấu phẩy)
+# Ví dụ: FRONTEND_URL=https://video-call-ten-coral.vercel.app,http://localhost:5173
 FRONTEND_URL=http://localhost:5173
 
 # Node
