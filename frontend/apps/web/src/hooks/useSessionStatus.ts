@@ -30,7 +30,7 @@ export const useSessionStatus = (
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
   const retryCountRef = useRef(0);
   const maxRetries = 3;
 
@@ -71,7 +71,7 @@ export const useSessionStatus = (
     // Set up polling interval
     intervalRef.current = window.setInterval(() => {
       fetchStatus();
-    }, interval) as unknown as NodeJS.Timeout;
+    }, interval);
 
     // Cleanup
     return () => {

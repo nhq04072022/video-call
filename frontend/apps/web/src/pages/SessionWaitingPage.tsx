@@ -120,7 +120,7 @@ export const SessionWaitingPage: React.FC = () => {
     let pollCount = 0;
     let initialSessionStatus: string | null = null; // Track initial status when we joined
     const maxPolls = 300; // Poll for up to 5 minutes (300 * 1s)
-    let pollInterval: NodeJS.Timeout | null = null;
+    let pollInterval: number | null = null;
 
     const pollSessionStatus = async () => {
       pollCount++;
@@ -193,7 +193,7 @@ export const SessionWaitingPage: React.FC = () => {
     const startPollingTimer = setTimeout(() => {
       console.log('[SessionWaitingPage] Starting to poll session status');
       // Poll every 1 second for faster response (backup to data channel)
-      pollInterval = setInterval(pollSessionStatus, 1000);
+      pollInterval = window.setInterval(pollSessionStatus, 1000);
     }, 2000); // Wait 2 seconds before starting to poll
     
     return () => {
