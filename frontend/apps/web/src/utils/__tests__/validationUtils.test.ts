@@ -1,7 +1,7 @@
 /**
  * Unit tests for validation utility functions
  */
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { validateEmail, validatePassword, validateSessionId } from '../validationUtils';
 
 describe('validationUtils', () => {

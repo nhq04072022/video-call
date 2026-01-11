@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event'; // Unused, comment out
 import { BrowserRouter } from 'react-router-dom';
 import { SessionPreStartPage } from '../SessionPreStartPage';
 import { useSessionStatus } from '../../hooks/useSessionStatus';

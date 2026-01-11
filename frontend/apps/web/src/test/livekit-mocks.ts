@@ -60,12 +60,13 @@ export const createMockRoom = () => {
  * Mock LiveKit Room class globally
  */
 export const mockLiveKitRoom = () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { Room } = require('livekit-client');
   
   const OriginalRoom = Room;
   
   // Mock Room constructor
-  const MockRoom = vi.fn().mockImplementation((options?: any) => {
+  const MockRoom = vi.fn().mockImplementation((_options?: any) => {
     const room = {
       localParticipant: createMockLocalParticipant(),
       remoteParticipants: new Map(),
@@ -89,8 +90,9 @@ export const mockLiveKitRoom = () => {
  * Mock WebRTC media devices
  */
 export const mockMediaDevices = () => {
-  global.navigator = {
-    ...global.navigator,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (global as any).navigator = {
+    ...(global as any).navigator,
     mediaDevices: {
       getUserMedia: vi.fn().mockResolvedValue({
         getTracks: () => [],

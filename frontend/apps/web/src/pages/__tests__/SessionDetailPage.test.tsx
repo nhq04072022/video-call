@@ -2,7 +2,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { SessionDetailPage } from '../SessionDetailPage';
-import { getMockSessionApi, mockSessionId } from '../../test/api-mocks';
+// import { getMockSessionApi, mockSessionId } from '../../test/api-mocks'; // Unused, comment out
+import { mockSessionId } from '../../test/api-mocks';
 
 // Mock useParams and useNavigate
 const mockNavigate = vi.fn();
@@ -331,7 +332,7 @@ describe('SessionDetailPage', () => {
     await waitFor(() => {
       // The error message should be displayed
       const errorElement = screen.queryByText(errorMessage) ||
-                          screen.queryByText((content, element) => {
+                          screen.queryByText((_content, element) => {
                             return element?.textContent?.includes(errorMessage) || false;
                           });
       expect(errorElement).toBeInTheDocument();
