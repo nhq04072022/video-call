@@ -68,7 +68,7 @@ router.get('/', authenticateToken, async (req: AuthRequest, res: Response) => {
     const total = parseInt(countResult.rows[0]?.count || '0');
 
     res.json({
-      notifications: result.rows.map((row) => ({
+      notifications: result.rows.map((row: any) => ({
         id: row.id,
         user_id: row.user_id,
         type: row.type,

@@ -49,7 +49,7 @@ router.get('/me/calendar', authenticateToken, async (req: AuthRequest, res: Resp
       [mentorId, startDate, endDate]
     );
 
-    const events = sessionsResult.rows.map((session) => {
+    const events = sessionsResult.rows.map((session: any) => {
       // Parse scheduled_time properly
       const scheduledTime = session.scheduled_time instanceof Date 
         ? new Date(session.scheduled_time.getTime())
@@ -93,7 +93,7 @@ router.get('/me/calendar', authenticateToken, async (req: AuthRequest, res: Resp
         duration_minutes: session.duration_minutes || duration,
         livekit_room_name: session.livekit_room_name,
       };
-    }).filter((event) => event !== null);
+    }).filter((event: any) => event !== null);
 
     res.json({
       events,
@@ -166,7 +166,7 @@ router.get('/me/calendar/events', authenticateToken, async (req: AuthRequest, re
     console.log(`[Calendar API] Found ${sessionsResult.rows.length} sessions`);
 
     // Format for FullCalendar
-    const events = sessionsResult.rows.map((session) => {
+    const events = sessionsResult.rows.map((session: any) => {
       // PostgreSQL returns TIMESTAMP as Date object
       // pg library automatically converts TIMESTAMP to JavaScript Date
       // The Date object represents the time in UTC, but when displayed it uses local timezone
@@ -265,7 +265,7 @@ router.get('/me/calendar/events', authenticateToken, async (req: AuthRequest, re
           session_id: session.id,
         },
       };
-    }).filter((event) => event !== null); // Filter out null events
+    }).filter((event: any) => event !== null); // Filter out null events
 
     res.json(events);
   } catch (error) {

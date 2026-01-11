@@ -52,7 +52,7 @@ router.get('/me/availability', authenticateToken, async (req: AuthRequest, res: 
     );
 
     res.json({
-      slots: result.rows.map((row) => ({
+      slots: result.rows.map((row: any) => ({
         id: row.id,
         mentor_id: row.mentor_id,
         day_of_week: row.day_of_week,
@@ -329,7 +329,7 @@ router.get('/me/availability/check', authenticateToken, async (req: AuthRequest,
       is_available: isAvailable,
       has_availability_slot: availabilityResult.rows.length > 0,
       has_conflict: conflictResult.rows.length > 0,
-      conflicting_sessions: conflictResult.rows.map((row) => row.id),
+      conflicting_sessions: conflictResult.rows.map((row: any) => row.id),
     });
   } catch (error) {
     console.error('Error checking availability:', error);

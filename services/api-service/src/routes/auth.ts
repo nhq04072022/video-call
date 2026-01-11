@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { z } from 'zod';
 import pool from '../db';
 import {
@@ -100,7 +100,7 @@ router.post('/register', async (req: Request, res: Response) => {
         role: user.role,
       },
       jwtSecret,
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as SignOptions
     );
 
     // CRITICAL: Set httpOnly cookie instead of returning token in body (no cache - everything in DB)
@@ -192,7 +192,7 @@ router.post('/login', async (req: Request, res: Response) => {
         role: user.role,
       },
       jwtSecret,
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as SignOptions
     );
 
     // CRITICAL: Set httpOnly cookie instead of returning token in body (no cache - everything in DB)

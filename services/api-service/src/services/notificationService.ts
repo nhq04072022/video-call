@@ -276,7 +276,7 @@ export async function getPendingJobs(): Promise<NotificationJob[]> {
       []
     );
 
-    return result.rows.map((row) => ({
+    return result.rows.map((row: any) => ({
       id: row.id,
       session_id: row.session_id,
       user_id: row.user_id,

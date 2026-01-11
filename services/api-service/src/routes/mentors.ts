@@ -36,7 +36,7 @@ router.get('/', authenticateToken, async (req: AuthRequest, res: Response) => {
     );
     const total = parseInt(countResult.rows[0].total);
 
-    const mentors = result.rows.map((row) => ({
+    const mentors = result.rows.map((row: any) => ({
       id: row.id,
       bio: row.bio || '',
       hourly_rate: 0, // TODO: Add to mentor_profiles table

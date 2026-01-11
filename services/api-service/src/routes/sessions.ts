@@ -218,7 +218,7 @@ router.get('/', authenticateToken, async (req: AuthRequest, res: Response) => {
 
     const result = await pool.query(query, params);
 
-    const sessions = result.rows.map((session) => ({
+    const sessions = result.rows.map((session: any) => ({
       id: session.id,
       mentor_id: session.mentor_id,
       mentee_id: session.mentee_id,
@@ -921,7 +921,7 @@ router.get('/:sessionId/participants', authenticateToken, async (req: AuthReques
       [sessionId]
     );
 
-    const participants = participantsResult.rows.map(row => ({
+    const participants = participantsResult.rows.map((row: any) => ({
       id: row.user_id,
       full_name: row.full_name,
       email: row.email,
