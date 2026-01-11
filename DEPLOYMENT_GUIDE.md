@@ -30,7 +30,8 @@
    - **Branch:** `main`
    - **Root Directory:** `services/api-service` ⚠️ **QUAN TRỌNG!**
    - **Runtime:** `Node`
-   - **Build Command:** `npm install && npm run build`
+   - **Build Command:** `npm ci && npm run build`
+     - ⚠️ **QUAN TRỌNG:** Dùng `npm ci` thay vì `npm install` để đảm bảo install cả `devDependencies` (cần cho TypeScript build)
    - **Start Command:** `npm start`
    - **Plan:** `Free`
 
