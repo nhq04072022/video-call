@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { SessionDetailPage } from '../SessionDetailPage';
-// import { getMockSessionApi, mockSessionId } from '../../test/api-mocks'; // Unused, comment out
 import { mockSessionId } from '../../test/api-mocks';
 
 // Mock useParams and useNavigate
