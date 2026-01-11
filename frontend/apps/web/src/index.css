@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System CSS Variables */
+:root {
+  /* Colors */
+  --color-primary-purple: #A11692;
+  --color-primary-purple-accent: #A31694;
+  --color-text-grey: #514B50;
+  --color-background-soft-white: #F5F5F5;
+  
+  /* Border Radius */
+  --radius-button: 9999px;
+  --radius-card: 16px;
+  --radius-card-lg: 24px;
+  
+  /* Typography */
+  --font-family-sans: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-weight-heading: 600;
+  --font-weight-body: 400;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text-grey);
+  background-color: var(--color-background-soft-white);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Organic Wave Shapes Background */
+.wave-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(161, 22, 146, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(163, 22, 148, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 20%, rgba(161, 22, 146, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wave-background > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom scrollbar - Design System Colors */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-purple-accent);
+}
+
+/* Screen reader only class for accessibility (WCAG 2.1 AA) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Show sr-only content when focused */
+.sr-only:focus,
+.sr-only:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus styles for keyboard navigation (WCAG 2.1 AA) - Design System */
+*:focus-visible {
+  outline: 2px solid var(--color-primary-purple);
+  outline-offset: 2px;
+}
+
+/* Ensure all interactive elements have visible focus states */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-primary-purple);
+  outline-offset: 2px;
+}
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary-purple);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* High contrast text for better readability (WCAG 2.1 AA - 4.5:1 contrast ratio) */
+.text-gray-900 {
+  color: #111827; /* Ensures 4.5:1 contrast on white */
+}
+
+.text-gray-700 {
+  color: #374151; /* Ensures 4.5:1 contrast on white */
+}
+
+.text-gray-600 {
+  color: #4b5563; /* Ensures 4.5:1 contrast on white */
+}
+
+/* Ensure button text meets contrast requirements */
+button:not(:disabled) {
+  min-height: 44px; /* WCAG 2.1 AA touch target size */
+  min-width: 44px;
+}
+
+/* Ensure form controls meet touch target requirements */
+select,
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Ensure clickable labels have adequate touch targets */
+label {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* High contrast for better readability - WCAG 2.1 AA (4.5:1 contrast ratio) */
+.text-text-grey {
+  color: #514B50; /* Design System color - ensures 4.5:1 contrast on white */
+}
+
+/* Ensure error text has sufficient contrast */
+.text-red-600 {
+  color: #dc2626; /* Ensures 4.5:1 contrast on white */
+}
+
+.text-red-800 {
+  color: #991b1b; /* Ensures 7:1 contrast on white for better visibility */
+}
+
+
+
+
+
