@@ -58,7 +58,17 @@ NODE_ENV=production
 PORT=3001
 ```
 
-### 1.4. Deploy
+### 1.4. Cấu hình Build
+
+**QUAN TRỌNG:** Đảm bảo Render install `devDependencies` để build TypeScript:
+
+1. Trong Render Dashboard → Service Settings:
+   - **Build Command:** `npm install && npm run build`
+   - Hoặc nếu đã có build command, đảm bảo nó chạy `npm install` trước `npm run build`
+
+2. Render mặc định sẽ install cả `dependencies` và `devDependencies` khi chạy `npm install`
+
+### 1.5. Deploy
 
 1. Click **"Create Web Service"**
 2. Đợi build (3-5 phút)
@@ -74,7 +84,7 @@ PORT=3001
 }
 ```
 
-### 1.5. Lưu ý Render Free Tier
+### 1.6. Lưu ý Render Free Tier
 
 - Service sẽ **sleep** sau 15 phút không có traffic
 - Lần request đầu sau khi sleep mất ~30 giây để wake up
