@@ -46,6 +46,7 @@
     - vite.config.ts
     - next.config.js
     - tsconfig.json
+    - env.example
     - README.md
     - TESTING.md
 
@@ -65,6 +66,7 @@
     - index.ts
   - package.json
   - tsconfig.json
+  - env.example
   - README.md
   - SETUP_DATABASE.md
   - SETUP_LIVEKIT.md
